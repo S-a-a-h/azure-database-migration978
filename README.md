@@ -9,7 +9,7 @@
    - Database
    - Firewall
 1. Installation Instructions
-   - Microsoft SQL Server
+   - SQL Server Developer 
    - SQL Server Management Studio (SSMS)
 1. Usage Instructions
 1. License Information
