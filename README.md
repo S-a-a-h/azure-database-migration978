@@ -98,8 +98,7 @@ Navigate to the Overview page of the server and click on 'Show networking settin
 
 ### Installation Instructions
 ---
-Connect to your VM via Microsoft Remote Desktop by dragging and dropping the downloaded RDP file to this applicatiion, which will then launch your VM. 
-
+Connect to your VM via Microsoft Remote Desktop by dragging and dropping the downloaded RDP file to this applicatiion, which will then launch your VM and ask you to sign in using your Authentication Account credentials.
 
 Once you are on, download and install the following: 
 
