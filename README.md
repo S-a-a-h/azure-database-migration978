@@ -28,6 +28,8 @@ Database: AdventureWorks | Link: [https://aicore-portal-public-prod-307050600709
 Ensure you have a Mircosoft Azure account with an appropriate subscription. 
 
 
+
+
 #### Virtual Machine
 Create a Virtual Machine by navigating to the relevent Azure service.
 
@@ -69,6 +71,7 @@ Once this resoure has been deployed, navigate to it and on the Overview page cli
 
 
 
+
 #### Server
 Create an SQL Server by navigating to the relevent Azure service.
 
@@ -78,11 +81,13 @@ Complete the required fields as you did for the creation of the VM. However, in 
 
 
 
+
 #### Database
 Create an SQL Database by navigating to the relevent Azure service.
 
 
 Complete the required fields as you did for the creation of the Server and be sure to select this Server in the appropriate field. Select 'Geo-redundant backup storage' for 'Backup storage redundancy' - this will aloow for geo-replication later on. Leave all other options as default. Then click on 'Review + create' to deploy this resource. 
+
 
 
 
