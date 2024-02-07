@@ -28,8 +28,7 @@ Database: AdventureWorks | Link: [https://aicore-portal-public-prod-307050600709
 Ensure you have a Mircosoft Azure account with an appropriate subscription. 
 
 
-Virtual Machine
----
+#### Virtual Machine
 Create a Virtual Machine by navigating to the relevent Azure service.
 
 
@@ -70,8 +69,7 @@ Once this resoure has been deployed, navigate to it and on the Overview page cli
 
 
 
-Server
----
+#### Server
 Create an SQL Server by navigating to the relevent Azure service.
 
 
@@ -80,8 +78,7 @@ Complete the required fields as you did for the creation of the VM. However, in 
 
 
 
-Database
----
+#### Database
 Create an SQL Database by navigating to the relevent Azure service.
 
 
@@ -89,8 +86,7 @@ Complete the required fields as you did for the creation of the Server and be su
 
 
 
-Firewall
----
+#### Firewall
 Navigate to the Overview page of the server and click on 'Show networking settings' to add a new firewall rule which allows access to the database on ADM. Name the rule and paste the database IP address in both fields: 'Start IP' and 'End IP'. Access is now granted to your database. 
 
 
