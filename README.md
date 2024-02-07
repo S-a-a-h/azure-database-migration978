@@ -105,7 +105,7 @@ Once you are on, download and install the following:
 
 
 
-SQL Server Developer (Download Link: [https://go.microsoft.com/fwlink/p/?linkid=2215158&clcid=0x809&culture=en-gb&country=gb to])
+SQL Server Developer (Download Link: [https://go.microsoft.com/fwlink/p/?linkid=2215158&clcid=0x809&culture=en-gb&country=gb])
 
 
 
