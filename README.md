@@ -112,10 +112,6 @@ Once you have installed the above, there is a button to 'Install SSMS' so go ahe
 
 
 
-> [!NOTE]
-> Ensure these links are not outdated for your purposes. 
-
-
 
 ### Usage Instructions
 ---
@@ -126,3 +122,9 @@ Database details...
 ### License Information
 ---
 None.
+
+
+
+
+> [!NOTE]
+> Ensure links are not outdated for your purposes. 
