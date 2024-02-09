@@ -23,6 +23,10 @@ Database: AdventureWorks | [Database Download Link](https://aicore-portal-public
 
 
 
+      PRODUCTION DATABASE
+      
+
+
 ### Set Up
 ---
 Ensure you have a Mircosoft Azure account with an appropriate subscription. 
@@ -120,9 +124,6 @@ Once you have installed the above, there is a button to 'Install SSMS' so go ahe
 ### Usage Instructions
 ---
 
-> [!NOTE]
-> Ensure you are using your VM to complete the steps below.
-
 #### Connect to Database
 Launch SSMS to connect to the server with the following settings and using your Authentication Account credentials: 
 
@@ -154,16 +155,85 @@ You should receive a notification pop up to tell you that the restoration was su
 
 
 
-         THIS COMPLETES THE CREATION OF THE PRODUCTION DATABASE
+         DATABASE MIGRATION
 
 
 
 
-* Create another Azure SQL Server which will support a development database. Follow the steps above in the **[Server](#Server)** section 
+Create another Azure SQL Server which will support a development database. Follow the steps above in the **[Server](#Server)** section. For the authentication method choose SQL Login instead this time - you will need this to confgure Azure Data Studio. 
 
-* Create the development Azure SQL Database on your Azure account to which you intend to migrate your ADM database to as this existing database is the on-premise, production database. You require one which will replicate this. 
+Create the development Azure SQL Database on your Azure account to which you intend to migrate your ADM database to as this existing database is the on-premise, production database. You require one which will replicate this and can create it by following the steps in the **[Database](#Database)** section. Ensure to configure appropriate settings by following the **[Firewall](#Firewall)** rules section. 
 
 
+#### Azure Data Studio
+Install and configure Azure Data Studio on ADM (the VM you created at the beginning of this project) via [this link](https://docs.microsoft.com/en-us/sql/azure-data-studio/download-azure-data-studio). Be sure to select **Create Desktop Icon** when given the option for ease of access. 
+
+
+
+
+
+Launch Azure Data Studio and establish a connection with your on-premise database:
+ - Click on **New Connection** in the **Servers** tab on the left of the application.
+ - Fill out the connection details (localhost as server name will provide all databases stored on the local server).
+ - Authentication Type will remain as default: **Windows Authentication**.
+ - The **AdventureWorks2022** database will then become available as a choice in the **Database** field.
+ - Connect and when prompted with a **Connection Error**, click **Enable Trust server certificate**
+
+
+
+
+
+Connect to the database you created in this section of the project, via Azure Data Studio by clicking on **New Connection** once again and filling in the connection details for this new database which will be used to migrate your local database to. This time select **SQL Login** as the **Autherntication Type** and use your SQL Login credentials from when you created this target server. Finally, click **Connect** to connect this development database to Azure Data Studio. If a **Connection Error** pops up, check that your Firewall rules are correctly configured for this server - specify ADM VM's IP Address. 
+
+
+
+
+From the left-tabs of Azure Data Studio, select **Extensions** and install **Schema Compare**. Right-click on the database you would like to replicate - in this case, **localhost** and click **Schema Compare**. Ensure that the target database is your desired development database then click **OK**.
+
+
+
+
+On the Schema Compare page in the main console, click on **Compare** and ensure the changes being made are accurately being synchronized - in this case, this applies to all changes. When prompted if you would like to update the target database with these changes, click **Yes**. Once this update has occurred you should be able to view all the tables from the local server, within this target database however they will not contain any data as just the schema has been updated to this database.
+
+
+
+
+#### Azure SQL Migration
+Now to ensure the data is inserted into these tables, install **Azure SQL Migration** from the **Extensions** tab to add it to your environment. Right-click on the local server's **AdventureWorks2022** database to select **Manage**. In the main console, click on the button: **Migrate to Azure SQL** which will open a Migration Wizard to select the dataebase whih you want to migrate (**AdventureWorks2022**).
+
+
+
+
+#### Steps
+- Complete each of the steps of the Migration Wizard and ensure you use the correct credentials relative to your target server in Step 3.
+- Step 4: you will need to navigate to **Azure Database Migration Service** on your Azure account and create a new service with all the default settings, before you are able to move forward. Now, you will see an error message in the main console so you need to click on the download link and select the latest or desired version of **Azure Database Migration Service** and then run the downloaded file to install. Use one of the Keys provided in the main console of Azure Data Studio to **Register** Integration Runtime. Finally, click on **Launch Configuration Manager**.
+- Click refresh or **Save + close** and re-open this migration ticket and you should be able to proceed to Step 5.
+- Step 5: you will need your Windows Authentication credentials and ensure all tables are selected by clicking **Edit**, select as you desire and **Update**, if necessary. Click **Run Validation** then **Start Migration**
+- Once the migration is complete and successful, you can view the table data in the target database. 
+
+
+
+      INSPECTION
+
+Note
+This is an integral part of data migration to retain data intergrity and accuracy.
+
+
+
+#### File Structure
+These files contain matching SQL Queries which can be run by opening the files or opening a new query for each database. This ensures that the data matches and has not been corrupted during the migration process: 
+
+
+
+
+Local Server: localhost_validation_queries.sql
+
+
+
+
+Target Server: migration_validation_queries.sql
+
+ 
 
 
 ### License Information
