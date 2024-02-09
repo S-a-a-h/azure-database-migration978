@@ -159,6 +159,13 @@ You should receive a notification pop up to tell you that the restoration was su
 
 
 
+* Create another Azure SQL Server which will support a development database. Follow the steps above in the **[Server](#Server)** section 
+
+* Create the development Azure SQL Database on your Azure account to which you intend to migrate your ADM database to as this existing database is the on-premise, production database. You require one which will replicate this. 
+
+
+
+
 ### License Information
 ---
 None.
