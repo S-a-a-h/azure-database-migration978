@@ -33,7 +33,7 @@ DATABASE MIGRATION
 
 
 
-INSPECTION
+DATABASE INSPECTION
 1. File Structure
 1. License Information
 
@@ -244,7 +244,7 @@ Now to ensure the data is inserted into these tables, install **Azure SQL Migrat
 
 
 
-      INSPECTION
+      DATABASE INSPECTION
 
 > [!NOTE]
 > This is an integral part of data migration to retain data intergrity and accuracy.
