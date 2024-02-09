@@ -3,6 +3,7 @@
 ### Table of Contents
 ---
 1. Project Description
+PRODUCTION DATABASE
 1. Set Up
    - Virtual Machine
    - Server
@@ -12,6 +13,16 @@
    - SQL Server Developer 
    - SQL Server Management Studio (SSMS)
 1. Usage Instructions
+   - Connect to the Database
+   - Restore the AdventureWorks Database
+DATABASE MIGRATION
+1. Migration Installation Instructions
+   - Azure Data Studio
+   - Azure SQL Migration
+1. Migration 
+   - Steps
+INSPECTION
+1. File Structure
 1. License Information
 
 
@@ -112,18 +123,18 @@ Once you are on, download and install the following:
 
 
 
-SQL Server Developer | [Download Link](https://go.microsoft.com/fwlink/p/?linkid=2215158&clcid=0x809&culture=en-gb&country=gb)
+#### SQL Server Developer
+[Download Link](https://go.microsoft.com/fwlink/p/?linkid=2215158&clcid=0x809&culture=en-gb&country=gb)
 
 
-
-Once you have installed the above, there is a button to 'Install SSMS' so go ahead and click that to access the download link for SQL Server Management Studio. Make sure to install this as well.
+#### SQL Server Management Studio
+Once you have installed the above, there is a button to 'Install SSMS' so go ahead and click that to access the download link for SSMS. Make sure to install this as well.
 
 
 
 
 ### Usage Instructions
 ---
-
 #### Connect to Database
 Launch SSMS to connect to the server with the following settings and using your Authentication Account credentials: 
 
@@ -151,18 +162,25 @@ In SSMS, ensure you are connected to the server, in the **Object Explorer**, rig
 
 
 
+
 You should receive a notification pop up to tell you that the restoration was successful. The AdventureWorks Database is now available in the Object Explorer under **Databases**.
 
 
 
-         DATABASE MIGRATION
+      DATABASE MIGRATION
 
 
 
-
+### Migration Installation Instructions
+---
 Create another Azure SQL Server which will support a development database. Follow the steps above in the **[Server](#Server)** section. For the authentication method choose SQL Login instead this time - you will need this to confgure Azure Data Studio. 
 
+
+
+
 Create the development Azure SQL Database on your Azure account to which you intend to migrate your ADM database to as this existing database is the on-premise, production database. You require one which will replicate this and can create it by following the steps in the **[Database](#Database)** section. Ensure to configure appropriate settings by following the **[Firewall](#Firewall)** rules section. 
+
+
 
 
 #### Azure Data Studio
@@ -203,7 +221,8 @@ Now to ensure the data is inserted into these tables, install **Azure SQL Migrat
 
 
 
-
+### Migration
+---
 #### Steps
 - Complete each of the steps of the Migration Wizard and ensure you use the correct credentials relative to your target server in Step 3.
 - Step 4: you will need to navigate to **Azure Database Migration Service** on your Azure account and create a new service with all the default settings, before you are able to move forward. Now, you will see an error message in the main console so you need to click on the download link and select the latest or desired version of **Azure Database Migration Service** and then run the downloaded file to install. Use one of the Keys provided in the main console of Azure Data Studio to **Register** Integration Runtime. Finally, click on **Launch Configuration Manager**.
@@ -215,12 +234,13 @@ Now to ensure the data is inserted into these tables, install **Azure SQL Migrat
 
       INSPECTION
 
-Note
-This is an integral part of data migration to retain data intergrity and accuracy.
+> [!NOTE]
+> This is an integral part of data migration to retain data intergrity and accuracy.
 
 
 
-#### File Structure
+### File Structure
+---
 These files contain matching SQL Queries which can be run by opening the files or opening a new query for each database. This ensures that the data matches and has not been corrupted during the migration process: 
 
 
