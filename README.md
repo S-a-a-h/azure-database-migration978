@@ -2,40 +2,28 @@
 
 ### Table of Contents
 ---
-1. Project Description
-
-
-
-
-PRODUCTION DATABASE
-1. Set Up
+i.Project Description
+1. PRODUCTION DATABASE
+ii. Set Up
    - Virtual Machine
    - Server
    - Database
    - Firewall
-1. Installation Instructions
+iii. Installation Instructions
    - SQL Server Developer 
    - SQL Server Management Studio (SSMS)
-1. Usage Instructions
+iv. Usage Instructions
    - Connect to the Database
    - Restore the AdventureWorks Database
-
-
-
-
-DATABASE MIGRATION
-1. Migration Installation Instructions
+1. DATABASE MIGRATION
+v.  Migration Installation Instructions
    - Azure Data Studio
    - Azure SQL Migration
-1. Migration 
+vi. Migration 
    - Steps
-
-
-
-
-DATABASE INSPECTION
-1. File Structure
-1. License Information
+3. DATABASE INSPECTION
+vii. File Structure
+viii. License Information
 
 
 
