@@ -3,6 +3,10 @@
 ### Table of Contents
 ---
 1. Project Description
+
+
+
+
 PRODUCTION DATABASE
 1. Set Up
    - Virtual Machine
@@ -15,12 +19,20 @@ PRODUCTION DATABASE
 1. Usage Instructions
    - Connect to the Database
    - Restore the AdventureWorks Database
+
+
+
+
 DATABASE MIGRATION
 1. Migration Installation Instructions
    - Azure Data Studio
    - Azure SQL Migration
 1. Migration 
    - Steps
+
+
+
+
 INSPECTION
 1. File Structure
 1. License Information
