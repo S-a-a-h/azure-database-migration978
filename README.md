@@ -3,7 +3,7 @@
 ### Table of Contents
 ---
 1. Project Description
-- - PRODUCTION DATABASE
+PRODUCTION DATABASE ---
 1. Set Up
    - Virtual Machine
    - Server
@@ -14,14 +14,14 @@
    - SQL Server Management Studio (SSMS)
 1. Usage Instructions
    - Connect to the Database
-   - Restore the AdventureWorks Database
-- - DATABASE MIGRATION
+   - Restore AdventureWorks Database
+DATABASE MIGRATION ---
 1. Migration Installation Instructions
    - Azure Data Studio
    - Azure SQL Migration
 1. Migration 
    - Steps
-- - DATABASE INSPECTION
+DATABASE INSPECTION ---
 1. File Structure
 1. License Information
 
@@ -152,7 +152,7 @@ Authentication: **Windows Authentication**
 
 
 
-#### Restore the AdventureWorks Database
+#### Restore AdventureWorks Database
 Download the backup file ([Download Link](https://aicore-portal-public-prod-307050600709.s3.eu-west-1.amazonaws.com/project-files/93dd5a0c-212d-48eb-ad51-df521a9b4e9c/AdventureWorks2022.bak)) and store in the following pathway: `C:\Program Files\Microsoft SQL Server\MSSQL16.MSSQLSERVER\MSSQL\Backup\`
 
 
