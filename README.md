@@ -346,19 +346,45 @@ SECRET = 'Access Key';`
 
 
 
-- Once you have executed this query, a new node will appear in the Object Explorer containing your credntials which will ensure that any periodic backups will be stored correctly:
+- Once you have executed this query, refresh the **Object Explorer** to view the new node containing your credentials which will ensure that any periodic backups will be stored safely and correctly:
+
+
+
+
 ![image](https://github.com/S-a-a-h/azure-database-migration978/assets/152003248/620d957b-9831-4fb4-86ed-46ad25e8b2bf)
 
 
 
 
-
+- Right-click on the **SQL Server Agent** node and select **Start** to begin configuring automated backups:
 ![image](https://github.com/S-a-a-h/azure-database-migration978/assets/152003248/dd0ec808-fd70-4abb-842f-9d2060800b83)
 
 
 
 
+- Expand the **Management** node, right-click on **Maintenance Plans** and then select **Maintenance Plan Wizard**
+![image](https://github.com/S-a-a-h/azure-database-migration978/assets/152003248/fd891b7e-9b50-4240-9d95-1017fbec8042)
+
+
+
+
+- Ensure a name and description of this plan for readability:
+![image](https://github.com/S-a-a-h/azure-database-migration978/assets/152003248/107d7e46-7db2-4217-a66d-81dc0ce8a587)
+- As you can see, the **Schedule** isset to default: **Not Scheduled (On Demand)**
+- Click on **Change** to configure this setting to a weekly backup before clicking **Next**:
+![image](https://github.com/S-a-a-h/azure-database-migration978/assets/152003248/8f2fd1e3-4de8-4987-bf9a-d08a650b9840)
+
+
+
+
+- Ensure that you select **Back Up Database (Full)** before continuing
+![image](https://github.com/S-a-a-h/azure-database-migration978/assets/152003248/69171c5b-b7ab-4283-9c2c-0a5c0a12000d)
+
+
+
+
 - 
+
 
 
 
