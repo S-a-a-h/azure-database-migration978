@@ -43,7 +43,7 @@
     - Restoring Backup Database onto DUP-ADM
     - Inspect Restored Backup Database Data
 11. Automate Database Backups
-   - Steps
+    - Steps
 
 ---
 12. License Information
