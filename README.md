@@ -289,8 +289,16 @@ Target Server: migration_validation_queries.sql
 
 
 
+### Azure Remote Storage (Blob)
+---
+- Create a **Storage Account** by navigating to the service on the Azure Portal - this is where you will store your database backup file as Blob storage, remotely.
+- Create a container by accessing this Storage Account, selecting **Containers** in the left-panel under **Data Storage** and clicking on **+ Container** to be prompted for the container's name and **Anonymous access level** - *Ensure use of the most appropriate access level for your case*.
+- Upload .bak file to the container by clicking on **Upload** in the desired container by dragging and dropping the file here before uploading.
+
+
 
       SANDBOX
+
 
 #### Description 
 A sandbox is a controlled and isolated environment where applications and software can be tested, developed, and experimented with, all without impacting the production systems. To create this development environment, the Windows VM which is currently the **Production Environment**, with all of it's infrastructure, will be duplicated. The purpose of a sandbox allows you to work on the application, test new features, and troubleshoot issues in a safe and isolated environment before making changes in the production system.
@@ -308,13 +316,15 @@ A sandbox is a controlled and isolated environment where applications and softwa
 
 
 #### Restoring Backup Database onto DUP-ADM
+- Download the Blob from your Azure Storage Account 
+- Restore the AdventureWorks2022 database by following the instructions for **[Restore AdventureWorks Database](#Restore AdventureWorks Database)**
+- Refresh the **Object Explorer** if you cannot view the restored database
 
 
 
 
 #### Inspect Restored Backup Database Data
-Run some queires to ensure data integrity. 
-For example, you may wish to check the number of rows for some tables with the following syntax: 
+Run some queires to ensure data integrity. For example, you may wish to check the number of rows for some tables with the following syntax: 
 
 
 
@@ -383,7 +393,16 @@ SECRET = 'Access Key';`
 
 
 
-- 
+- In the **General** tab, **All databases** should be backed up due to the developmental nature of this environment and the **Back up to** will be **URL**
+![image](https://github.com/S-a-a-h/azure-database-migration978/assets/152003248/357d5f56-36ea-49e0-948e-0d09c25a34a1)
+
+
+
+
+- Create a new container in your Azure Storage Account to store the backups and for linearity you may wish to call it **mydupadmcontainer** 
+- In the **Destination** tab, 
+ 
+
 
 
 
