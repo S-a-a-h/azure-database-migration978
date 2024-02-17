@@ -370,6 +370,10 @@ SECRET = 'Access Key';`
 
 
 - Ensure a name and description of this plan for readability:
+
+
+
+
 ![image](https://github.com/S-a-a-h/azure-database-migration978/assets/152003248/107d7e46-7db2-4217-a66d-81dc0ce8a587)
 - As you can see, the **Schedule** isset to default: **Not Scheduled (On Demand)**
 - Click on **Change** to configure this setting to a weekly backup before clicking **Next**:
