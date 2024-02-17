@@ -7,7 +7,7 @@
 
 
 
-PRODUCTION DATABASE 
+#### Production Database
    ---
 1. Set Up
    - Virtual Machine
@@ -24,7 +24,7 @@ PRODUCTION DATABASE
 
 
 
-DATABASE MIGRATION
+#### Database Migration
 ---
 1. Migration Installation Instructions
    - Azure Data Studio
@@ -35,7 +35,7 @@ DATABASE MIGRATION
 
 
 
-DATABASE INSPECTION
+#### Database Inspection
 ---
 1. File Structure
 1. License Information
