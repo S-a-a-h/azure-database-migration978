@@ -5,10 +5,8 @@
 1. Project Description
 
 
-
-
 #### Production Database
-   ---
+---
 2. Set Up
    - Virtual Machine
    - Server
@@ -20,10 +18,8 @@
 4. Usage Instructions
    - Connect to the Database
    - Restore AdventureWorks Database
-  
 
-
-
+     
 #### Database Migration
 ---
 5. Migration Installation Instructions
@@ -31,33 +27,26 @@
    - Azure SQL Migration
 6. Migration 
    - Steps
-  
-
 
 
 #### Database Inspection
 ---
 7. File Structure
-
-
+---
+8. Azure Blob Storage
 
 
 #### Sandbox
 ---
-Description 
+9. Description
+10. Sandbox Set Up
+    - Restoring Backup Database onto DUP-ADM
+    - Inspect Restored Backup Database Data
+11. Automate Database Backups
+   - Steps
 
-
-
-Sandbox Set Up 
-
-
-
-
-
-
-
-
-8. License Information
+---
+12. License Information
 
 
 
@@ -289,7 +278,7 @@ Target Server: migration_validation_queries.sql
 
 
 
-### Azure Remote Storage (Blob)
+### Azure Blob Storage
 ---
 - Create a **Storage Account** by navigating to the service on the Azure Portal - this is where you will store your database backup file as Blob storage, remotely.
 - Create a container by accessing this Storage Account, selecting **Containers** in the left-panel under **Data Storage** and clicking on **+ Container** to be prompted for the container's name and **Anonymous access level** - *Ensure use of the most appropriate access level for your case*.
@@ -334,7 +323,8 @@ Run some queires to ensure data integrity. For example, you may wish to check th
 
 
 
-#### Automate Database Backups
+### Automate Database Backups
+---
 Configuring a weekly backup schedule ensures consistent protection for any evolving work and simplifies the recovery process of the development environment if and when necessary.
 
 
@@ -400,10 +390,33 @@ SECRET = 'Access Key';`
 
 
 - Create a new container in your Azure Storage Account to store the backups and for linearity you may wish to call it **mydupadmcontainer** 
-- In the **Destination** tab, 
- 
+- In the **Destination** tab, use the drop down menu to select you correct credentials node for **SQL Credential** and type in your desired container name to backup to, which in this case would be: **mydupadmcontainer**
+- Click **Next** until the end of the plan and then **Finish** and you will be notified once this task has been successful:
+![image](https://github.com/S-a-a-h/azure-database-migration978/assets/152003248/f3d0999d-9bbb-4ac5-b0f0-5ffc4696901a)
 
 
+
+
+- Refresh the **Object Explorer** and you will be able to see a new node named **DUPADMMaintenancePlan** and as you can see, you have various options when right-clicking on this node:
+![image](https://github.com/S-a-a-h/azure-database-migration978/assets/152003248/71503e5a-6145-489a-914c-2bc3f75193b8)
+
+
+
+
+******* 
+- Click on **Execute** to commence the backup process (you may need to modify the **Start Date** in order to perform this action so click on **Modify** to do so first):
+![image](https://github.com/S-a-a-h/azure-database-migration978/assets/152003248/e884ea54-7339-4ee8-85ff-8a1dc77cadb7)
+
+
+
+
+- Verify that the backup file has been uploaded to the Azure Storage Container with the same name as specified in the maintenance plan. You can check this in the Azure portal.
+
+
+
+
+
+******* 
 
 
 
