@@ -38,6 +38,25 @@
 #### Database Inspection
 ---
 7. File Structure
+
+
+
+
+#### Sandbox
+---
+Description 
+
+
+
+Sandbox Set Up 
+
+
+
+
+
+
+
+
 8. License Information
 
 
@@ -268,7 +287,25 @@ Local Server: localhost_validation_queries.sql
 
 Target Server: migration_validation_queries.sql
 
- 
+
+
+
+      SANDBOX
+
+#### Description 
+A sandbox is a controlled and isolated environment where applications and software can be tested, developed, and experimented with, all without impacting the production systems. To create this development environment, the Windows VM which is currently the **Production Environment**, with all of it's infrastructure, will be duplicated. The purpose of a sandbox is to proceed to allow a safe exploration and experimentation environment for new concepts, while maintaining the main production data without any affects. 
+
+
+
+
+#### Sandbox Set Up
+- Provision a new **[Windows VM](#Virtual Machine)**
+- Follow the **[Installation Instructions](#Installation Instructions)** to mimic the infrastructure of the **Production Environment**; ensure the following are downloaded and installed correctly:
+- -  SQL Server Developer 
+   - SQL Server Management Studio (SSMS)
+
+
+
 
 
 ### License Information
