@@ -293,17 +293,72 @@ Target Server: migration_validation_queries.sql
       SANDBOX
 
 #### Description 
-A sandbox is a controlled and isolated environment where applications and software can be tested, developed, and experimented with, all without impacting the production systems. To create this development environment, the Windows VM which is currently the **Production Environment**, with all of it's infrastructure, will be duplicated. The purpose of a sandbox is to proceed to allow a safe exploration and experimentation environment for new concepts, while maintaining the main production data without any affects. 
+A sandbox is a controlled and isolated environment where applications and software can be tested, developed, and experimented with, all without impacting the production systems. To create this development environment, the Windows VM which is currently the **Production Environment**, with all of it's infrastructure, will be duplicated. The purpose of a sandbox allows you to work on the application, test new features, and troubleshoot issues in a safe and isolated environment before making changes in the production system.
 
 
 
 
 #### Sandbox Set Up
-- Provision a new **[Windows VM](#Virtual Machine)**
+- Provision a new **[Windows VM](#Virtual Machine)** named **DUP-ADM**
 - Follow the **[Installation Instructions](#Installation Instructions)** to mimic the infrastructure of the **Production Environment**; ensure the following are downloaded and installed correctly:
-- -  SQL Server Developer 
+   - SQL Server Developer 
    - SQL Server Management Studio (SSMS)
 
+
+
+
+#### Restoring Backup Database onto DUP-ADM
+
+
+
+
+#### Inspect Restored Backup Database Data
+Run some queires to ensure data integrity. 
+For example, you may wish to check the number of rows for some tables with the following syntax: 
+
+
+
+
+`SELECT * FROM [table_name];`
+
+
+
+
+#### Automate Database Backups
+Configuring a weekly backup schedule ensures consistent protection for any evolving work and simplifies the recovery process of the development environment if and when necessary.
+
+
+
+
+#### Steps
+Create your credentials for your server to ensure backups are stored to the correct and secure external location:
+- Right-click on the Server you wish to backup (**DUP-ADM**) and select **New Query**
+- Now input your correct credentials into the following syntax:
+   - (Your **Access Key** is associated to your storage account on your Azure Portal under **Security + networking**)
+   - **DO NOT SHARE YOUR ACCESS KEYS WITH ANYONE FOR SECURITY PURPOSES**
+
+
+
+
+`CREATE CREDENTIAL [YourCredentialName]
+WITH IDENTITY = '[Your Azure Storage Account Name]',
+SECRET = 'Access Key';`
+
+
+
+- Once you have executed this query, a new node will appear in the Object Explorer containing your credntials which will ensure that any periodic backups will be stored correctly:
+![image](https://github.com/S-a-a-h/azure-database-migration978/assets/152003248/620d957b-9831-4fb4-86ed-46ad25e8b2bf)
+
+
+
+
+
+![image](https://github.com/S-a-a-h/azure-database-migration978/assets/152003248/dd0ec808-fd70-4abb-842f-9d2060800b83)
+
+
+
+
+- 
 
 
 
