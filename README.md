@@ -289,6 +289,8 @@ Target Server: migration_validation_queries.sql
 
       SANDBOX
 
+> [!NOTE]
+> The following section uses SSMS.
 
 #### Description 
 A sandbox is a controlled and isolated environment where applications and software can be tested, developed, and experimented with, all without impacting the production systems. To create this development environment, the Windows VM which is currently the **Production Environment**, with all of it's infrastructure, will be duplicated. The purpose of a sandbox allows you to work on the application, test new features, and troubleshoot issues in a safe and isolated environment before making changes in the production system.
@@ -326,7 +328,7 @@ Run some queires to ensure data integrity. For example, you may wish to check th
 
 ### Automate Database Backups
 ---
-Configuring a weekly backup schedule ensures consistent protection for any evolving work and simplifies the recovery process of the development environment if and when necessary.
+Configuring a weekly backup schedule ensures consistent protection for any evolving work and simplifies the recovery process of the development environment if and when necessary. 
 
 
 
