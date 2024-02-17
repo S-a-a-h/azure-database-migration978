@@ -256,7 +256,7 @@ Now to ensure the data is inserted into these tables, install **Azure SQL Migrat
 
 ### File Structure
 ---
-These files contain matching SQL Queries which can be run by opening the files or opening a new query for each database. This ensures that the data matches and has not been corrupted during the migration process: 
+These files contain matching SQL Queries which can be run by opening the files or opening a new query for each database. This ensures that the data matches and has not been lost or corrupted during the migration process: 
 
 
 
