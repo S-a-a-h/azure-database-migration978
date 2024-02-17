@@ -9,15 +9,15 @@
 
 #### Production Database
    ---
-1. Set Up
+2. Set Up
    - Virtual Machine
    - Server
    - Database
    - Firewall
-1. Installation Instructions
+3. Installation Instructions
    - SQL Server Developer 
    - SQL Server Management Studio (SSMS)
-1. Usage Instructions
+4. Usage Instructions
    - Connect to the Database
    - Restore AdventureWorks Database
   
@@ -26,10 +26,10 @@
 
 #### Database Migration
 ---
-1. Migration Installation Instructions
+5. Migration Installation Instructions
    - Azure Data Studio
    - Azure SQL Migration
-1. Migration 
+6. Migration 
    - Steps
   
 
@@ -37,8 +37,8 @@
 
 #### Database Inspection
 ---
-1. File Structure
-1. License Information
+7. File Structure
+8. License Information
 
 
 
