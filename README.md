@@ -477,8 +477,22 @@ To mimic a data corruption scenario, use the following queries in Azure Data Stu
    `SELECT EmailAddress FROM Person.EmailAddress;`
    ![image](https://github.com/S-a-a-h/azure-database-migration978/assets/152003248/2ed21e24-4528-4c40-9df2-53f616f3dd98)
 
+
    
 
+
+#### Restore Database via Azure SQL Database Backup
+On Azure Portal, navigate to the Azure SQL Database associaed with your production environment to click on **Restore**. Choose a date and time representing the point in time before the data loss/corruption occurred. Be sure to name this database descriptively to distinguish between the compromised database and the one being restored to ADM; add `-restored` to the end of the database name. **Review + create** this restoration once you have checked the details are correct. 
+
+#### Validate Restoration 
+Connect to this restored database via Azure Data Studio's **Connections** tab: 
+![image](https://github.com/S-a-a-h/azure-database-migration978/assets/152003248/6cfc3977-9dff-4c8f-88df-a37591029565)
+
+
+
+Validate that this database is fully functional and is without any data loss/corruption by running simple queries to examine the number of rows, especially targetting the deleted and corrupted data from the simulation: 
+- Examine number of rows: `QUERY`
+- Examine correct values: `QUERY`
 
 
 
