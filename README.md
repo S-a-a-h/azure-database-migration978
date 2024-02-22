@@ -439,13 +439,17 @@ To mimic a data loss scenario, use the following query in Azure Data Studio in t
 
 
 
-1. Perform the data loss query:
-   `
 
-
+1. Perform the data loss query by disabling all foreign key constraints referencing the table:
+   `EXEC sp_msforeachtable 'ALTER TABLE ? NOCHECK CONSTRAINT ALL';`
    
-1. View the data once the loss has occurred:
+1. Delete the rows from the table:
+   `DELETE TOP (100) FROM Person.Address;`
+   
+1. View the data once the loss has occurred to confirm that the top 100 rows are now missing:
    `SELECT * FROM Person.Address;`
+   ![image](https://github.com/S-a-a-h/azure-database-migration978/assets/152003248/ac7e0b0d-7aa8-4dba-86e3-7024ebe1daeb)
+
    
 
 
@@ -454,12 +458,17 @@ To mimic a data loss scenario, use the following query in Azure Data Studio in t
 To mimic a data corruption scenario, use the following queries in Azure Data Studio in the VM: ADM.
 
 1. View the data you are going to mimic corruption on:
-   `SELECT * FROM Person.Password;`
+   `SELECT * FROM Person.EmailAddress;`
+   
 1. Corrupt the data with the following query:
-   `UPDATE TOP (100) Person.Password
-   SET PasswordHash = NULL;`
+   `UPDATE TOP (100) Person.EmailAddress
+    SET EmailAddress = NULL;`
+   
 1. View the corrupted data:
-   `SELECT PasswordHash FROM Person.Password;`
+   `SELECT EmailAddress FROM Person.EmailAddress;`
+   ![image](https://github.com/S-a-a-h/azure-database-migration978/assets/152003248/2ed21e24-4528-4c40-9df2-53f616f3dd98)
+
+   
 
 
 
