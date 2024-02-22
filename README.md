@@ -417,8 +417,17 @@ SECRET = 'Access Key';`
 
 
 
+
+- A popup will display the backup progress and success of the maintenance plan.
+![image](https://github.com/S-a-a-h/azure-database-migration978/assets/152003248/8528e2c1-2f69-444a-95e8-35136dc988aa)
+
+
+
+
+
 - Verify that the backup file has been uploaded to the Azure Storage Container with the same name as specified in the maintenance plan. You can check this in the Azure portal.
 ![image](https://github.com/S-a-a-h/azure-database-migration978/assets/152003248/7874acc6-c306-4d8a-a694-95530f9c72a2)
+
 
 
 
