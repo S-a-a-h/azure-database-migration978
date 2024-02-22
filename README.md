@@ -410,20 +410,58 @@ SECRET = 'Access Key';`
 
 
 
-******* WIP
-- Click on **Execute** to commence the backup process (you may need to modify the **Start Date** in order to perform this action so click on **Modify** to do so first):
+
+- Click on **Execute** to commence the backup process
 ![image](https://github.com/S-a-a-h/azure-database-migration978/assets/152003248/e884ea54-7339-4ee8-85ff-8a1dc77cadb7)
 
 
 
 
 - Verify that the backup file has been uploaded to the Azure Storage Container with the same name as specified in the maintenance plan. You can check this in the Azure portal.
+![image](https://github.com/S-a-a-h/azure-database-migration978/assets/152003248/7874acc6-c306-4d8a-a694-95530f9c72a2)
 
 
 
 
+### Disaster Recovery Simulation
+---
+This part of the project simulates data loss and corruption within the production environment to test the robustness of disaster recovery procedures. 
 
-******* WIP
+
+
+
+To mimic a data loss scenario, use the following query in Azure Data Studio in the VM: ADM. 
+
+1. View the data you are going to mimic loss on:
+   `SELECT * FROM Person.Address;'
+   ![image](https://github.com/S-a-a-h/azure-database-migration978/assets/152003248/361d5a67-17bc-4b20-9b74-6571e1b428c7)
+
+
+
+
+1. Perform the data loss query:
+   `
+
+
+   
+1. View the data once the loss has occurred:
+   `SELECT * FROM Person.Address;`
+   
+
+
+
+
+To mimic a data corruption scenario, use the following queries in Azure Data Studio in the VM: ADM.
+
+1. View the data you are going to mimic corruption on:
+   `SELECT * FROM Person.Password;`
+1. Corrupt the data with the following query:
+   `UPDATE TOP (100) Person.Password
+   SET PasswordHash = NULL;`
+1. View the corrupted data:
+   `SELECT PasswordHash FROM Person.Password;`
+
+
 
 
 
