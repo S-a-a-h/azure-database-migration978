@@ -518,19 +518,32 @@ Once the database has been restored through Azure, it will appear under the reso
 
 
 
-To validate that it has been restored correctly, establish a connection to it using Azure Data Studio in the VM: ADM, by clicking on the **New Connection** icon in the **Connections** tab and entering the relevant details. 
+To validate that it has been restored correctly, establish a connection to it using Azure Data Studio in the VM: ADM, by clicking on the **New Connection** icon in the **Connections** tab and entering the relevant details and **SQL Login** credentials. 
 
 
 
 
 Verify that this database is once again fully functional by running simple queries to examine the number of rows, especially targetting the deleted and corrupted data from the simulation: 
 - Examine number of rows: `SELECT * FROM Person.Address;`
+![image](https://github.com/S-a-a-h/azure-database-migration978/assets/152003248/03f690b6-ae5d-4cd1-8c93-f2ffef3a028b)
+
+
+
+
+
 - Examine correct values: `SELECT EmailAddress FROM Person.EmailAddress;`
+![image](https://github.com/S-a-a-h/azure-database-migration978/assets/152003248/600e5aef-f3bf-489d-b760-633a856c7551)
 
 
 
 
-Delete the corrupted database as this restored database is it's replacement. 
+
+Delete the corrupted database in the Azure Portal by navigating to it and clicking on **Delete** in the top bar. It is no longer useful to the production environment. 
+
+
+
+
+
 
 
 
