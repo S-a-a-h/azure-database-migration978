@@ -439,7 +439,7 @@ This part of the project simulates data loss and corruption within the productio
 
 
 
-Backup the production environment as this is where the simulation will occur (VM: ADM) by utilizing the [Maintenance Plan Wizard](#Automate Database Backups)
+Backup the production environment as this is where the simulation will occur (VM: ADM) by utilizing the **[Maintenance Plan Wizard](#AutomateDatabaseBackups)**
 
 
 Then executing this plan according to the setting of "One Off": 
