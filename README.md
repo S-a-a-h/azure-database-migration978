@@ -483,15 +483,21 @@ To mimic a data corruption scenario, use the following queries in Azure Data Stu
 
 #### Restore Database via Azure SQL Database Backup
 On Azure Portal, navigate to the Azure SQL Database associaed with your production environment to click on **Restore**. Choose a date and time representing the point in time before the data loss/corruption occurred. Be sure to name this database descriptively to distinguish between the compromised database and the one being restored to ADM; add `-restored` to the end of the database name. **Review + create** this restoration once you have checked the details are correct. 
+![image](https://github.com/S-a-a-h/azure-database-migration978/assets/152003248/d63d6b2b-094d-4266-a17a-f631f74e1952)
+
 
 #### Validate Restoration 
-Connect to this restored database via Azure Data Studio's **Connections** tab: 
-![image](https://github.com/S-a-a-h/azure-database-migration978/assets/152003248/6cfc3977-9dff-4c8f-88df-a37591029565)
+Connect to this restored database via Azure Data Studio's **Connections** tab by expanding the **Azure** section: 
+1. ![image](https://github.com/S-a-a-h/azure-database-migration978/assets/152003248/41891c47-eec3-4c55-a6b4-a7586b3e40b5)
+1. ![image](https://github.com/S-a-a-h/azure-database-migration978/assets/152003248/7fc9b028-92c5-49b6-9f00-cdbaff499d13)
+1. ![image](https://github.com/S-a-a-h/azure-database-migration978/assets/152003248/8274fc0e-b0d1-4a44-9a8b-3eca2a9c04dd)
+
+
 
 
 
 Validate that this database is fully functional and is without any data loss/corruption by running simple queries to examine the number of rows, especially targetting the deleted and corrupted data from the simulation: 
-- Examine number of rows: `QUERY`
+- Examine number of rows: `SELECT * FROM Person.Address;`
 - Examine correct values: `QUERY`
 
 
