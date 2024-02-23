@@ -439,10 +439,7 @@ This part of the project simulates data loss and corruption within the productio
 
 
 
-Backup the production environment as this is where the simulation will occur (VM: ADM) by utilizing the **[Maintenance Plan Wizard](#Automate Database Backups)**
-
-
-Then executing this plan according to the setting of "One Off": 
+Backup the production environment as this is where the simulation will occur (VM: ADM) by utilizing the Maintenance Plan Wizard by following instructions to **[Automate Database Backups](#Automate Database Backups)**. Make sure to only execute this plan on an "On Demand" basis: 
 ![image](https://github.com/S-a-a-h/azure-database-migration978/assets/152003248/e34b98cd-2163-429f-8b07-f51bf0abb6be)
 ![image](https://github.com/S-a-a-h/azure-database-migration978/assets/152003248/cce62712-22cb-48a0-97e8-ffca6ac17dad)
 
@@ -484,6 +481,10 @@ To mimic a data corruption scenario, use the following queries in Azure Data Stu
 
 1. View the data you are going to mimic corruption on:
    `SELECT * FROM Person.EmailAddress;`
+   ![image](https://github.com/S-a-a-h/azure-database-migration978/assets/152003248/fc2d007b-2b7b-4c02-bbda-aac59e10d563)
+
+
+
    
 1. Corrupt the data with the following query:
    `UPDATE TOP (100) Person.EmailAddress
@@ -491,30 +492,45 @@ To mimic a data corruption scenario, use the following queries in Azure Data Stu
    
 1. View the corrupted data:
    `SELECT EmailAddress FROM Person.EmailAddress;`
-   ![image](https://github.com/S-a-a-h/azure-database-migration978/assets/152003248/2ed21e24-4528-4c40-9df2-53f616f3dd98)
+   ![image](https://github.com/S-a-a-h/azure-database-migration978/assets/152003248/bb43407d-06cc-4a04-b375-ba971c88fd06)
+
 
 
    
 
 
 #### Restore Database via Azure SQL Database Backup
-On Azure Portal, navigate to the Azure SQL Database associaed with your production environment to click on **Restore**. Choose a date and time representing the point in time before the data loss/corruption occurred. Be sure to name this database descriptively to distinguish between the compromised database and the one being restored to ADM; add `-restored` to the end of the database name. **Review + create** this restoration once you have checked the details are correct. 
-![image](https://github.com/S-a-a-h/azure-database-migration978/assets/152003248/d63d6b2b-094d-4266-a17a-f631f74e1952)
+On Azure Portal, navigate to the Azure SQL Database associaed with your production environment to click on **Restore**. 
+![image](https://github.com/S-a-a-h/azure-database-migration978/assets/152003248/55d90736-8fc8-444d-9a63-ad2a3f9546a5)
+
+
+
+
+Choose a date and time representing the point in time before the data loss/corruption occurred. Be sure to name this database descriptively to distinguish between the compromised database and the one being restored to ADM; add `-restored` to the end of the database name. **Review + create** this restoration once you have checked the details are correct. 
+![image](https://github.com/S-a-a-h/azure-database-migration978/assets/152003248/321851ed-fb58-41a0-9083-41e792b8d55d)
+
 
 
 #### Validate Restoration 
-Connect to this restored database via Azure Data Studio's **Connections** tab by expanding the **Azure** section: 
-1. ![image](https://github.com/S-a-a-h/azure-database-migration978/assets/152003248/41891c47-eec3-4c55-a6b4-a7586b3e40b5)
-1. ![image](https://github.com/S-a-a-h/azure-database-migration978/assets/152003248/7fc9b028-92c5-49b6-9f00-cdbaff499d13)
-1. ![image](https://github.com/S-a-a-h/azure-database-migration978/assets/152003248/8274fc0e-b0d1-4a44-9a8b-3eca2a9c04dd)
+Once the database has been restored through Azure, it will appear under the resource list in Azure SQL Database in the Azure Portal. 
+![image](https://github.com/S-a-a-h/azure-database-migration978/assets/152003248/02636af7-a3d9-4f1e-883d-a7888c1a255c)
 
 
 
 
+To validate that it has been restored correctly, establish a connection to it using Azure Data Studio in the VM: ADM, by clicking on the **New Connection** icon in the **Connections** tab and entering the relevant details. 
 
-Validate that this database is fully functional and is without any data loss/corruption by running simple queries to examine the number of rows, especially targetting the deleted and corrupted data from the simulation: 
+
+
+
+Verify that this database is once again fully functional by running simple queries to examine the number of rows, especially targetting the deleted and corrupted data from the simulation: 
 - Examine number of rows: `SELECT * FROM Person.Address;`
-- Examine correct values: `QUERY`
+- Examine correct values: `SELECT EmailAddress FROM Person.EmailAddress;`
+
+
+
+
+Delete the corrupted database as this restored database is it's replacement. 
 
 
 
