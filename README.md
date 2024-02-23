@@ -439,6 +439,22 @@ This part of the project simulates data loss and corruption within the productio
 
 
 
+Backup the production environment as this is where the simulation will occur (VM: ADM) by utilizing the [Maintenance Plan Wizard](#Automate Database Backups)
+
+
+Then executing this plan according to the setting of "One Off": 
+![image](https://github.com/S-a-a-h/azure-database-migration978/assets/152003248/e34b98cd-2163-429f-8b07-f51bf0abb6be)
+![image](https://github.com/S-a-a-h/azure-database-migration978/assets/152003248/cce62712-22cb-48a0-97e8-ffca6ac17dad)
+
+
+
+
+Finally, check that this backup has occurred in the correct container by navigating to it to see the new blob in the Azure Portal: 
+![image](https://github.com/S-a-a-h/azure-database-migration978/assets/152003248/638e8631-deed-4648-a6c3-b6f6f5d22f56)
+
+
+
+
 To mimic a data loss scenario, use the following query in Azure Data Studio in the VM: ADM. 
 
 1. View the data you are going to mimic loss on:
