@@ -543,7 +543,51 @@ Delete the corrupted database in the Azure Portal by navigating to it and clicki
 
 
 
+### Geo-Replication and Failover 
+Geo-replication involves backing up the primary database to a secondary location which differs from the primary database's region and incase of a disaster. 
 
+
+
+
+#### Steps
+1. In the Azure Portal, navigate to the database requiring geo-replication, in this case, the one which was just restored.
+1. Select **Replicas** from under the **Data management** tab on the left. 
+![image](https://github.com/S-a-a-h/azure-database-migration978/assets/152003248/540d7a3a-750f-451b-b8ed-a646f2df1440)
+1. Click on **Create replica** and create a new server for this geo-replicated database
+1. Select a location that is far from the one where the primary database is stored: Primary: UK South | Secondary: East US
+1. Select **Use SQL authentication** to create credentials to access this server in the event of a disaster
+1. Confirm the details and **Review + create** to synchronize the databases
+1. Validate the geo-replication details of the primary and secondary databases by examining the resource's page (you will be redirected to this once deployment is complete in Azure)
+![image](https://github.com/S-a-a-h/azure-database-migration978/assets/152003248/1a39d219-4c50-4129-a755-ebba4f76f495)
+
+
+
+
+#### Failover 
+A faiover switches the workload from the primary region to the secondary region in a geo-replicated environment. Orchestrating a planned failover during a downtime window determines the functionality of the environment without impacting the production workload or incurring any data loss. 
+
+
+
+
+#### Steps
+1. Navigate to resources in Azure Portal and select the primary **server** which is associated with the region: **UK South**
+1. Select **Failover groups** from under the **Data management** tab on the left
+1. Click on **Add group** in the top bar to create a new failover group
+1. Enter a name for this failover group and select the secondary server as the **Server**, then **Create**
+![image](https://github.com/S-a-a-h/azure-database-migration978/assets/152003248/5fdf8982-05ec-4e03-8b57-440a6d94e83e)
+1. Access this group to initialise the failover
+![image](https://github.com/S-a-a-h/azure-database-migration978/assets/152003248/1a5a38e6-e5f1-4b56-9ae9-7198d72e1011)
+1. Select **Failover** from the top tab and then click **Yes** at the following warning:
+![image](https://github.com/S-a-a-h/azure-database-migration978/assets/152003248/aa2c4af9-0d55-45c7-9455-1567bb5f667c)
+1. You will see this change once the failover has occurred:
+![image](https://github.com/S-a-a-h/azure-database-migration978/assets/152003248/8e2f047e-3c66-4108-9dae-0cec7353836d)
+
+
+
+
+#### Tailback 
+A tailback reverts the workload back to the primary region after a successful failover. To perform the tailback, simply click on **Failback** then **Yes** when the warning pops up and you should see that the workload is switched back to the primary region.
+![image](https://github.com/S-a-a-h/azure-database-migration978/assets/152003248/6e19aeb0-b4cf-4760-90c7-282dd81b44da)
 
 
 
