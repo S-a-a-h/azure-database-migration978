@@ -592,6 +592,17 @@ A tailback reverts the workload back to the primary region after a successful fa
 
 
 
+### Microsoft Entra Directory Integration
+---
+**WIP**
+Begin by enabling Microsoft Entra ID authentication for the SQL Server that hosts your Azure SQL production database. This steps integrates Microsoft Entra ID as a trusted identity provider, allowing users to authenticating using their Microsoft Entra credentials.
+
+
+Subsequently, choose an Microsoft Entra admin who holds privileged permissions within your Azure SQL Database environment. This admin will have authority over user management and access control. Ensure that you can establish a connection to the production database using Microsoft Entra credentials within Azure Data Studio.
+**WIP**
+---
+
+
 
 ### License Information
 ---
