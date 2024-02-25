@@ -596,23 +596,91 @@ A tailback reverts the workload back to the primary region after a successful fa
 ---
 To manage who can access the data as well as user management, Microsoft Entra IDs can be created by first navigating to the SQL Server in the Azure Portal which hosts the primary database - the one which was recently restored. Under the **Settings** section, click on **Microsoft Entra**, then **Set Admin** in the top bar. Select **Users** to choose the correct user to assign admin privileges to by searching for them and clciking **Select**:
 ![image](https://github.com/S-a-a-h/azure-database-migration978/assets/152003248/3c7db878-9a1a-4707-921d-4b681a461aea)
-You will now see that this has been set:
-![image](https://github.com/S-a-a-h/azure-database-migration978/assets/152003248/cc76be46-eeb6-4962-a77c-0f64b97f6347)
+You will now see that this has been set after clicking on **Save** in the top bar:
+![image](https://github.com/S-a-a-h/azure-database-migration978/assets/152003248/ca6bc97c-c02f-4bd1-a874-734341d52cbf)
 
 
 
 
+#### Connect using Microsoft Entra ID
+Connect to the VM named ADM and access Azure Data Studio to establish a connection to the restored, production database. 
 
 
 
 
-**WIP**
-Begin by enabling Microsoft Entra ID authentication for the SQL Server that hosts your Azure SQL production database. This steps integrates Microsoft Entra ID as a trusted identity provider, allowing users to authenticating using their Microsoft Entra credentials.
+If a connection already exists, right-click on the server and select **Disconnect** before double-clicking on the server once more to connect. This will ensure that a refresh occurs to allow for use of the new Microsoft Entra admin user. In the **Connection Details**, select **Azure Active Directory - Universal with MFA support** and **Add an account** to add the authorized account by logging in when redirected. Now, you have the option to choose this account in future. Click on **Connect** once details are confirmed. 
+![image](https://github.com/S-a-a-h/azure-database-migration978/assets/152003248/a521ac6c-682f-45d8-8923-1fa4fd697132)
 
 
-Subsequently, choose an Microsoft Entra admin who holds privileged permissions within your Azure SQL Database environment. This admin will have authority over user management and access control. Ensure that you can establish a connection to the production database using Microsoft Entra credentials within Azure Data Studio.
-**WIP**
+
+
+#### DB Reader User 
+Begin by generating a new user account in Microsoft Entra ID, which will serve as your DB Reader user.
+
+In Azure Data Studio, ensure that you're connected to the production database using the Microsoft Entra admin credentials. Proceed to assign the db_datareader role to the previously created DB Reader User. This role provides the user with read-only privileges.
+
+Reconnect to your production database using Azure Data Studio and the credentials of the new DB Reader AD user. Test out the permissions of the user to ensure the correct role has been assigned to this user.
 ---
+A DB Reader User is a user with read-only access to the database. 
+
+
+
+
+
+Create an db_reader user by navigating to the Azure portal and into the Microsoft Entra ID resource homepage. Click on **Create new** and select a suggestive name for the user. Be sure to create a password for this user by unticking **Auto-generatepassword** and store these credentials safely. Confirm the details and **Create**.
+
+
+
+
+In ADM, return to the connection made in Azure Data Studio via Microsoft Entra ID and open up a **New Query** by right-clicking on the server and selecting that option. Adapt and run the following queries to enable the correct credentials for the db_reader user you have created in the Azure Portal: 
+
+
+
+
+`CREATE USER [DB_Reader@yourdomain.com] FROM EXTERNAL PROVIDER;` - creates the user 
+
+
+
+
+`ALTER ROLE db_datareader ADD MEMBER [DB_Reader@yourdomain.com];` - adapts the access assigned to the user
+
+
+
+
+In the Azure Portal, this user will now appear in the Microsoft Entra Directory users when you search for the user you created for db_reader purposes only. 
+![image](https://github.com/S-a-a-h/azure-database-migration978/assets/152003248/e24df1d2-158d-4ee1-84c1-b55e97b41e60)
+
+
+
+
+To test this db_reader user's permissions, reconnect to the server using the associated credentials. You can do so by clicking **Edit Connection**
+![image](https://github.com/S-a-a-h/azure-database-migration978/assets/152003248/ee2c00d1-bc5b-4ef1-8f0f-91477b8880bb)
+
+
+
+
+Add the account as done for [Microsoft Entra ID](#Microsoft Entra Directory Integration) - you will be asked to choose a new password so update this and then click **Connect**:
+![image](https://github.com/S-a-a-h/azure-database-migration978/assets/152003248/4dd49d0d-16d2-4e32-926a-f06e860ad77c)
+
+
+
+
+![image](https://github.com/S-a-a-h/azure-database-migration978/assets/152003248/9c7a7aa1-7029-4c9d-8f2e-27ce99feb05b)
+
+
+
+
+Right-click on any table and select **Select Top 1000** and this will return the data requested:
+![image](https://github.com/S-a-a-h/azure-database-migration978/assets/152003248/6f1a24e9-826d-4015-a3d0-fa4d3fe22db3)
+
+
+
+
+However, if you attempt the following query: `DELETE TOP (1) FROM Person.BusinessEntity;` 
+You will see the following error due to read-only access: 
+![image](https://github.com/S-a-a-h/azure-database-migration978/assets/152003248/c0115aaf-8cd1-4446-9434-d40185525a5d)
+
+
 
 
 
