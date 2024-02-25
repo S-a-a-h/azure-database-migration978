@@ -594,6 +594,18 @@ A tailback reverts the workload back to the primary region after a successful fa
 
 ### Microsoft Entra Directory Integration
 ---
+To manage who can access the data as well as user management, Microsoft Entra IDs can be created by first navigating to the SQL Server in the Azure Portal which hosts the primary database - the one which was recently restored. Under the **Settings** section, click on **Microsoft Entra**, then **Set Admin** in the top bar. Select **Users** to choose the correct user to assign admin privileges to by searching for them and clciking **Select**:
+![image](https://github.com/S-a-a-h/azure-database-migration978/assets/152003248/3c7db878-9a1a-4707-921d-4b681a461aea)
+You will now see that this has been set:
+![image](https://github.com/S-a-a-h/azure-database-migration978/assets/152003248/cc76be46-eeb6-4962-a77c-0f64b97f6347)
+
+
+
+
+
+
+
+
 **WIP**
 Begin by enabling Microsoft Entra ID authentication for the SQL Server that hosts your Azure SQL production database. This steps integrates Microsoft Entra ID as a trusted identity provider, allowing users to authenticating using their Microsoft Entra credentials.
 
