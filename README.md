@@ -118,7 +118,7 @@ Complete the required fields as you did for the creation of the VM. However, in 
 Create an SQL Database by navigating to the relevent Azure service.
 
 
-Complete the required fields as you did for the creation of the Server and be sure to select this Server in the appropriate field. Select **Geo-redundant backup storage** for **Backup storage redundancy** - this will aloow for geo-replication later on. Leave all other options as default. Then click on **Review + create** to deploy this resource. 
+Complete the required fields as you did for the creation of the Server and be sure to select this Server in the appropriate field. Select **Geo-redundant backup storage** for **Backup storage redundancy** - this will allow for geo-replication later on. Leave all other options as default. Then click on **Review + create** to deploy this resource. 
 
 
 
