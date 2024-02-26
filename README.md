@@ -2,68 +2,59 @@
 
 ### Table of Contents
 ---
+
 1. Project Description
-
-
-#### Production Database
----
-2. Set Up
-   - Virtual Machine
-   - Server
-   - Database
-   - Firewall
-3. Installation Instructions
-   - SQL Server Developer 
-   - SQL Server Management Studio (SSMS)
-4. Usage Instructions
-   - Connect to the Database
-   - Restore AdventureWorks Database
-
-     
-#### Database Migration
----
-5. Migration Installation Instructions
-   - Azure Data Studio
-   - Azure SQL Migration
-6. Migration 
-   - Steps
-
-
+2. Production Environment: Set Up
+#### Virtual Machine
+#### Server
+#### Database
+#### Firewall
+### Installation Instructions
+#### SQL Server Developer
+#### SQL Server Management Studio
+### Usage Instructions: Connect to Database
+#### Restore AdventureWorks Database
+3. Migration to Azure SQL Database
+#### Migration Installation Instructions
+#### Azure Data Studio
+#### Azure SQL Migration
+#### Migration: Steps
 #### Database Inspection
+#### File Structure
+#### Azure Blob Storage
+4. Data Backup and Restrore
+### Sandbox
+#### Sandbox Set Up
+#### Restoring Backup Database onto DUP-ADM
+#### Inspect Restored Backup Database Data
+### Automate Database Backups
+#### Steps
+5. Disaster Recovery Simulation
+#### Restore Database via Azure SQL Database Backup
+#### Validate Restoration 
+6. Geo-Replication and Failover 
+#### Steps
+#### Failover 
+#### Steps
+#### Tailback 
+7.  Microsoft Entra Directory Integration
+#### Connect using Microsoft Entra ID
+#### DB Reader User 
+8.  Azure Database Migration: Project Diagram
+9. License Information
 ---
-7. File Structure
----
-8. Azure Blob Storage
-
-
-#### Sandbox
----
-9. Description
-10. Sandbox Set Up
-    - Restoring Backup Database onto DUP-ADM
-    - Inspect Restored Backup Database Data
-11. Automate Database Backups
-    - Steps
-
----
-12. License Information
----
 
 
 
-### Project Description
+### 1. Project Description
 ---
 This project is a simulated database migration for a manufacturing company's operations using Microsoft Azure.
 Database: AdventureWorks | [Database Download Link](https://aicore-portal-public-prod-307050600709.s3.eu-west-1.amazonaws.com/project-files/93dd5a0c-212d-48eb-ad51-df521a9b4e9c/AdventureWorks2022.bak)
 
 
 
-      PRODUCTION DATABASE
-      
-
-
-### Set Up
----
+### Production Environment: Set Up
+---  
 Ensure you have a Mircosoft Azure account with an appropriate subscription. 
 
 
@@ -135,8 +126,7 @@ Navigate to the Overview page of the server and click on **Show networking setti
 
 
 
-### Installation Instructions
----
+#### Installation Instructions
 
 > [!NOTE]
 > Ensure you are using your VM to complete the steps below.
@@ -157,9 +147,7 @@ Once you have installed the above, there is a button to 'Install SSMS' so go ahe
 
 
 
-### Usage Instructions
----
-#### Connect to Database
+#### Usage Instructions: Connect to Database
 Launch SSMS to connect to the server with the following settings and using your Authentication Account credentials: 
 
 
@@ -191,12 +179,9 @@ You should receive a notification pop up to tell you that the restoration was su
 
 
 
-      DATABASE MIGRATION
-
-
-
-### Migration Installation Instructions
+### Migration to Azure SQL Database
 ---
+#### Migration Installation Instructions
 Create another Azure SQL Server which will support a development database. Follow the steps above in the **[Server](#Server)** section. For the authentication method choose SQL Login instead this time - you will need this to confgure Azure Data Studio. 
 
 
@@ -245,9 +230,7 @@ Now to ensure the data is inserted into these tables, install **Azure SQL Migrat
 
 
 
-### Migration
----
-#### Steps
+#### Migration: Steps
 - Complete each of the steps of the Migration Wizard and ensure you use the correct credentials relative to your target server in Step 3.
 - Step 4: you will need to navigate to **Azure Database Migration Service** on your Azure account and create a new service with all the default settings, before you are able to move forward. Now, you will see an error message in the main console so you need to click on the download link and select the latest or desired version of **Azure Database Migration Service** and then run the downloaded file to install. Use one of the Keys provided in the main console of Azure Data Studio to **Register** Integration Runtime. Finally, click on **Launch Configuration Manager**.
 - Click refresh or **Save + close** and re-open this migration ticket and you should be able to proceed to Step 5.
@@ -256,15 +239,14 @@ Now to ensure the data is inserted into these tables, install **Azure SQL Migrat
 
 
 
-      DATABASE INSPECTION
+#### Database Inspection
 
 > [!NOTE]
 > This is an integral part of data migration to retain data intergrity and accuracy.
 
 
 
-### File Structure
----
+#### File Structure
 These files contain matching SQL Queries which can be run by opening the files or opening a new query for each database. This ensures that the data matches and has not been lost or corrupted during the migration process: 
 
 
@@ -279,20 +261,20 @@ Target Server: migration_validation_queries.sql
 
 
 
-### Azure Blob Storage
----
+#### Azure Blob Storage
 - Create a **Storage Account** by navigating to the service on the Azure Portal - this is where you will store your database backup file as Blob storage, remotely.
 - Create a container by accessing this Storage Account, selecting **Containers** in the left-panel under **Data Storage** and clicking on **+ Container** to be prompted for the container's name and **Anonymous access level** - *Ensure use of the most appropriate access level for your case*.
 - Upload .bak file to the container by clicking on **Upload** in the desired container by dragging and dropping the file here before uploading.
 
 
-
-      SANDBOX
+### 4. Data Backup and Restrore
+---
 
 > [!NOTE]
 > The following section uses SSMS.
 
-#### Description 
+
+#### Sandbox
 A sandbox is a controlled and isolated environment where applications and software can be tested, developed, and experimented with, all without impacting the production systems. To create this development environment, the Windows VM which is currently the **Production Environment**, with all of it's infrastructure, will be duplicated. The purpose of a sandbox allows you to work on the application, test new features, and troubleshoot issues in a safe and isolated environment before making changes in the production system.
 
 
@@ -326,8 +308,7 @@ Run some queires to ensure data integrity. For example, you may wish to check th
 
 
 
-### Automate Database Backups
----
+#### Automate Database Backups
 Configuring a weekly backup schedule ensures consistent protection for any evolving work and simplifies the recovery process of the development environment if and when necessary. 
 
 
@@ -544,6 +525,7 @@ Delete the corrupted database in the Azure Portal by navigating to it and clicki
 
 
 ### Geo-Replication and Failover 
+---
 Geo-replication involves backing up the primary database to a secondary location which differs from the primary database's region and incase of a disaster. 
 
 
@@ -684,6 +666,13 @@ Right-click on any table and select **Select Top 1000** and this will return the
 However, if you attempt the following query: `DELETE TOP (1) FROM Person.BusinessEntity;` 
 You will see the following error due to read-only access: 
 ![image](https://github.com/S-a-a-h/azure-database-migration978/assets/152003248/c0115aaf-8cd1-4446-9434-d40185525a5d)
+
+
+
+
+### Azure Database Migration: Project Diagram
+---
+![image](https://github.com/S-a-a-h/azure-database-migration978/assets/152003248/58528764-be23-4971-8a12-875ecc9110f2)
 
 
 
