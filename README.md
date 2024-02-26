@@ -52,7 +52,7 @@ Database: AdventureWorks | [Database Download Link](https://aicore-portal-public
 
 
 
-### Production Environment: Set Up
+### 2. Production Environment: Set Up
 ---  
 Ensure you have a Mircosoft Azure account with an appropriate subscription. 
 
@@ -187,7 +187,7 @@ You should receive a notification pop up to tell you that the restoration was su
 
 
 
-### Migration to Azure SQL Database
+### 3. Migration to Azure SQL Database
 ---
 #### Migration Installation Instructions
 ---
@@ -281,7 +281,7 @@ Target Server: migration_validation_queries.sql
 - Upload .bak file to the container by clicking on **Upload** in the desired container by dragging and dropping the file here before uploading.
 
 
-### 4. Data Backup and Restrore
+### 4. Data Backup and Restore
 ---
 > [!NOTE]
 > The following section uses SSMS.
@@ -432,7 +432,7 @@ SECRET = 'Access Key';`
 
 
 
-### Disaster Recovery Simulation
+### 5. Disaster Recovery Simulation
 ---
 This part of the project simulates data loss and corruption within the production environment to test the robustness of disaster recovery procedures. 
 
@@ -545,7 +545,7 @@ Delete the corrupted database in the Azure Portal by navigating to it and clicki
 
 
 
-### Geo-Replication and Failover 
+### 6. Geo-Replication and Failover 
 ---
 Geo-replication involves backing up the primary database to a secondary location which differs from the primary database's region and incase of a disaster. 
 
@@ -599,7 +599,7 @@ A tailback reverts the workload back to the primary region after a successful fa
 
 
 
-### Microsoft Entra Directory Integration
+### 7. Microsoft Entra Directory Integration
 ---
 To manage who can access the data as well as user management, Microsoft Entra IDs can be created for administrative authority. 
 
@@ -690,7 +690,7 @@ You will see the following error due to read-only access:
 
 
 
-### Azure Database Migration: Project Diagram
+### 8. Azure Database Migration: Project Diagram
 ---
 ![image](https://github.com/S-a-a-h/azure-database-migration978/assets/152003248/58528764-be23-4971-8a12-875ecc9110f2)
 
@@ -698,7 +698,7 @@ You will see the following error due to read-only access:
 
 
 
-### License Information
+### 9. License Information
 ---
 None.
 
