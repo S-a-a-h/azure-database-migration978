@@ -60,6 +60,7 @@ Ensure you have a Mircosoft Azure account with an appropriate subscription.
 
 
 #### Virtual Machine
+---
 Create a Virtual Machine by navigating to the relevent Azure service.
 
 
@@ -102,6 +103,7 @@ Once this resoure has been deployed, navigate to it and on the Overview page cli
 
 
 #### Server
+---
 Create an SQL Server by navigating to the relevent Azure service.
 
 
@@ -112,6 +114,7 @@ Complete the required fields as you did for the creation of the VM. However, in 
 
 
 #### Database
+---
 Create an SQL Database by navigating to the relevent Azure service.
 
 
@@ -121,11 +124,13 @@ Complete the required fields as you did for the creation of the Server and be su
 
 
 #### Firewall
+---
 Navigate to the Overview page of the server and click on **Show networking settings** to add a new firewall rule which allows access to the database on ADM. Name the rule and paste the database IP address in both fields: **Start IP** and **End IP**. Access is now granted to your database. 
 
 
 
 #### Installation Instructions
+---
 
 > [!NOTE]
 > Ensure you are using your VM to complete the steps below.
@@ -137,16 +142,19 @@ Once you are on, download and install the following:
 
 
 #### SQL Server Developer
+---
 [Download Link](https://go.microsoft.com/fwlink/p/?linkid=2215158&clcid=0x809&culture=en-gb&country=gb)
 
 
 #### SQL Server Management Studio
+---
 Once you have installed the above, there is a button to 'Install SSMS' so go ahead and click that to access the download link for SSMS. Make sure to install this as well.
 
 
 
 
 #### Usage Instructions: Connect to Database
+---
 Launch SSMS to connect to the server with the following settings and using your Authentication Account credentials: 
 
 
@@ -164,6 +172,7 @@ Authentication: **Windows Authentication**
 
 
 #### Restore AdventureWorks Database
+---
 Download the backup file ([Download Link](https://aicore-portal-public-prod-307050600709.s3.eu-west-1.amazonaws.com/project-files/93dd5a0c-212d-48eb-ad51-df521a9b4e9c/AdventureWorks2022.bak)) and store in the following pathway: `C:\Program Files\Microsoft SQL Server\MSSQL16.MSSQLSERVER\MSSQL\Backup\`
 
 
@@ -181,6 +190,7 @@ You should receive a notification pop up to tell you that the restoration was su
 ### Migration to Azure SQL Database
 ---
 #### Migration Installation Instructions
+---
 Create another Azure SQL Server which will support a development database. Follow the steps above in the **[Server](#Server)** section. For the authentication method choose SQL Login instead this time - you will need this to confgure Azure Data Studio. 
 
 
@@ -192,6 +202,7 @@ Create the development Azure SQL Database on your Azure account to which you int
 
 
 #### Azure Data Studio
+---
 Install and configure Azure Data Studio on ADM (the VM you created at the beginning of this project) via [this link](https://docs.microsoft.com/en-us/sql/azure-data-studio/download-azure-data-studio). Be sure to select **Create Desktop Icon** when given the option for ease of access. 
 
 
@@ -225,11 +236,13 @@ On the Schema Compare page in the main console, click on **Compare** and ensure 
 
 
 #### Azure SQL Migration
+---
 Now to ensure the data is inserted into these tables, install **Azure SQL Migration** from the **Extensions** tab to add it to your environment. Right-click on the local server's **AdventureWorks2022** database to select **Manage**. In the main console, click on the button: **Migrate to Azure SQL** which will open a Migration Wizard to select the dataebase whih you want to migrate (**AdventureWorks2022**).
 
 
 
 #### Migration: Steps
+---
 - Complete each of the steps of the Migration Wizard and ensure you use the correct credentials relative to your target server in Step 3.
 - Step 4: you will need to navigate to **Azure Database Migration Service** on your Azure account and create a new service with all the default settings, before you are able to move forward. Now, you will see an error message in the main console so you need to click on the download link and select the latest or desired version of **Azure Database Migration Service** and then run the downloaded file to install. Use one of the Keys provided in the main console of Azure Data Studio to **Register** Integration Runtime. Finally, click on **Launch Configuration Manager**.
 - Click refresh or **Save + close** and re-open this migration ticket and you should be able to proceed to Step 5.
@@ -239,13 +252,14 @@ Now to ensure the data is inserted into these tables, install **Azure SQL Migrat
 
 
 #### Database Inspection
-
+---
 > [!NOTE]
 > This is an integral part of data migration to retain data intergrity and accuracy.
 
 
 
 #### File Structure
+---
 These files contain matching SQL Queries which can be run by opening the files or opening a new query for each database. This ensures that the data matches and has not been lost or corrupted during the migration process: 
 
 
@@ -261,6 +275,7 @@ Target Server: migration_validation_queries.sql
 
 
 #### Azure Blob Storage
+---
 - Create a **Storage Account** by navigating to the service on the Azure Portal - this is where you will store your database backup file as Blob storage, remotely.
 - Create a container by accessing this Storage Account, selecting **Containers** in the left-panel under **Data Storage** and clicking on **+ Container** to be prompted for the container's name and **Anonymous access level** - *Ensure use of the most appropriate access level for your case*.
 - Upload .bak file to the container by clicking on **Upload** in the desired container by dragging and dropping the file here before uploading.
@@ -268,18 +283,19 @@ Target Server: migration_validation_queries.sql
 
 ### 4. Data Backup and Restrore
 ---
-
 > [!NOTE]
 > The following section uses SSMS.
 
 
 #### Sandbox
+---
 A sandbox is a controlled and isolated environment where applications and software can be tested, developed, and experimented with, all without impacting the production systems. To create this development environment, the Windows VM which is currently the **Production Environment**, with all of it's infrastructure, will be duplicated. The purpose of a sandbox allows you to work on the application, test new features, and troubleshoot issues in a safe and isolated environment before making changes in the production system.
 
 
 
 
 #### Sandbox Set Up
+---
 - Provision a new **[Windows VM](#Virtual Machine)** named **DUP-ADM**
 - Follow the **[Installation Instructions](#Installation Instructions)** to mimic the infrastructure of the **Production Environment**; ensure the following are downloaded and installed correctly:
    - SQL Server Developer 
@@ -289,6 +305,7 @@ A sandbox is a controlled and isolated environment where applications and softwa
 
 
 #### Restoring Backup Database onto DUP-ADM
+---
 - Download the Blob from your Azure Storage Account 
 - Restore the AdventureWorks2022 database by following the instructions for **[Restore AdventureWorks Database](#Restore AdventureWorks Database)**
 - Refresh the **Object Explorer** if you cannot view the restored database
@@ -297,6 +314,7 @@ A sandbox is a controlled and isolated environment where applications and softwa
 
 
 #### Inspect Restored Backup Database Data
+---
 Run some queires to ensure data integrity. For example, you may wish to check the number of rows for some tables with the following syntax: 
 
 
@@ -308,12 +326,14 @@ Run some queires to ensure data integrity. For example, you may wish to check th
 
 
 #### Automate Database Backups
+---
 Configuring a weekly backup schedule ensures consistent protection for any evolving work and simplifies the recovery process of the development environment if and when necessary. 
 
 
 
 
 #### Steps
+---
 Create your credentials for your server to ensure backups are stored to the correct and secure external location:
 - Right-click on the Server you wish to backup (**DUP-ADM**) and select **New Query**
 - Now input your correct credentials into the following syntax:
@@ -480,6 +500,7 @@ To mimic a data corruption scenario, use the following queries in Azure Data Stu
 
 
 #### Restore Database via Azure SQL Database Backup
+---
 On Azure Portal, navigate to the Azure SQL Database associaed with your production environment to click on **Restore**. 
 ![image](https://github.com/S-a-a-h/azure-database-migration978/assets/152003248/55d90736-8fc8-444d-9a63-ad2a3f9546a5)
 
@@ -492,6 +513,7 @@ Choose a date and time representing the point in time before the data loss/corru
 
 
 #### Validate Restoration 
+---
 Once the database has been restored through Azure, it will appear under the resource list in Azure SQL Database in the Azure Portal. 
 ![image](https://github.com/S-a-a-h/azure-database-migration978/assets/152003248/02636af7-a3d9-4f1e-883d-a7888c1a255c)
 
@@ -531,6 +553,7 @@ Geo-replication involves backing up the primary database to a secondary location
 
 
 #### Steps
+---
 1. In the Azure Portal, navigate to the database requiring geo-replication, in this case, the one which was just restored.
 1. Select **Replicas** from under the **Data management** tab on the left. 
 ![image](https://github.com/S-a-a-h/azure-database-migration978/assets/152003248/540d7a3a-750f-451b-b8ed-a646f2df1440)
@@ -545,12 +568,14 @@ Geo-replication involves backing up the primary database to a secondary location
 
 
 #### Failover 
+---
 A faiover switches the workload from the primary region to the secondary region in a geo-replicated environment. Orchestrating a planned failover during a downtime window determines the functionality of the environment without impacting the production workload or incurring any data loss. 
 
 
 
 
 #### Steps
+---
 1. Navigate to resources in Azure Portal and select the primary **server** which is associated with the region: **UK South**
 1. Select **Failover groups** from under the **Data management** tab on the left
 1. Click on **Add group** in the top bar to create a new failover group
@@ -567,6 +592,7 @@ A faiover switches the workload from the primary region to the secondary region 
 
 
 #### Tailback 
+---
 A tailback reverts the workload back to the primary region after a successful failover. To perform the tailback, simply click on **Failback** then **Yes** when the warning pops up and you should see that the workload is switched back to the primary region.
 ![image](https://github.com/S-a-a-h/azure-database-migration978/assets/152003248/6e19aeb0-b4cf-4760-90c7-282dd81b44da)
 
@@ -589,6 +615,7 @@ You will now see that this has been set after clicking on **Save** in the top ba
 
 
 #### Connect using Microsoft Entra ID
+---
 Connect to the VM named ADM and access Azure Data Studio to establish a connection to the restored, production database. 
 
 
@@ -601,14 +628,8 @@ If a connection already exists, right-click on the server and select **Disconnec
 
 
 #### DB Reader User 
-Begin by generating a new user account in Microsoft Entra ID, which will serve as your DB Reader user.
-
-In Azure Data Studio, ensure that you're connected to the production database using the Microsoft Entra admin credentials. Proceed to assign the db_datareader role to the previously created DB Reader User. This role provides the user with read-only privileges.
-
-Reconnect to your production database using Azure Data Studio and the credentials of the new DB Reader AD user. Test out the permissions of the user to ensure the correct role has been assigned to this user.
 ---
 A DB Reader User is a user with read-only access to the database. 
-
 
 
 
