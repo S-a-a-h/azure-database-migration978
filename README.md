@@ -3,8 +3,8 @@
 ### Table of Contents
 ---
 1. Azure Database Migration: Project Diagram
-1. Project Description
-1. Production Environment: Set Up
+2. Project Description
+3. Production Environment: Set Up
  - Virtual Machine
  - Server
  - Database
@@ -14,7 +14,7 @@
  - SQL Server Management Studio
  - Usage Instructions: Connect to Database
  - Restore AdventureWorks Database
-1. Migration to Azure SQL Database
+4. Migration to Azure SQL Database
  - Migration Installation Instructions
  - Azure Data Studio
  - Azure SQL Migration
@@ -22,25 +22,25 @@
  - Database Inspection
  - File Structure
  - Azure Blob Storage
-1. Data Backup and Restrore
+5. Data Backup and Restrore
  - Sandbox
  - Sandbox Set Up
  - Restoring Backup Database onto DUP-ADM
  - Inspect Restored Backup Database Data
  - Automate Database Backups
  - Steps
-1. Disaster Recovery Simulation
+6. Disaster Recovery Simulation
  - Restore Database via Azure SQL Database Backup
  - Validate Restoration 
-1. Geo-Replication and Failover 
+7. Geo-Replication and Failover 
  - Steps
  - Failover 
  - Steps
  - Tailback 
-1.  Microsoft Entra Directory Integration
+8.  Microsoft Entra Directory Integration
  - Connect using Microsoft Entra ID
  - DB Reader User
-1. License Information
+9. License Information
 ---
 
 ### 1. Azure Database Migration: Project Diagram
