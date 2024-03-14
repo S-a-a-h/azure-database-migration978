@@ -2,8 +2,9 @@
 
 ### Table of Contents
 ---
+1. Azure Database Migration: Project Diagram
 1. Project Description
-2. Production Environment: Set Up
+1. Production Environment: Set Up
  - Virtual Machine
  - Server
  - Database
@@ -13,7 +14,7 @@
  - SQL Server Management Studio
  - Usage Instructions: Connect to Database
  - Restore AdventureWorks Database
-3. Migration to Azure SQL Database
+1. Migration to Azure SQL Database
  - Migration Installation Instructions
  - Azure Data Studio
  - Azure SQL Migration
@@ -21,38 +22,40 @@
  - Database Inspection
  - File Structure
  - Azure Blob Storage
-4. Data Backup and Restrore
+1. Data Backup and Restrore
  - Sandbox
  - Sandbox Set Up
  - Restoring Backup Database onto DUP-ADM
  - Inspect Restored Backup Database Data
  - Automate Database Backups
  - Steps
-5. Disaster Recovery Simulation
+1. Disaster Recovery Simulation
  - Restore Database via Azure SQL Database Backup
  - Validate Restoration 
-6. Geo-Replication and Failover 
+1. Geo-Replication and Failover 
  - Steps
  - Failover 
  - Steps
  - Tailback 
-7.  Microsoft Entra Directory Integration
+1.  Microsoft Entra Directory Integration
  - Connect using Microsoft Entra ID
- - DB Reader User 
-8.  Azure Database Migration: Project Diagram
-9. License Information
+ - DB Reader User
+1. License Information
 ---
 
+### 1. Azure Database Migration: Project Diagram
+---
+![image](https://github.com/S-a-a-h/azure-database-migration978/assets/152003248/58528764-be23-4971-8a12-875ecc9110f2)
 
 
-### 1. Project Description
+### 2. Project Description
 ---
 This project is a simulated database migration for a manufacturing company's operations using Microsoft Azure.
 Database: AdventureWorks | [Database Download Link](https://aicore-portal-public-prod-307050600709.s3.eu-west-1.amazonaws.com/project-files/93dd5a0c-212d-48eb-ad51-df521a9b4e9c/AdventureWorks2022.bak)
 
 
 
-### 2. Production Environment: Set Up
+### 3. Production Environment: Set Up
 ---  
 Ensure you have a Mircosoft Azure account with an appropriate subscription. 
 
@@ -187,7 +190,7 @@ You should receive a notification pop up to tell you that the restoration was su
 
 
 
-### 3. Migration to Azure SQL Database
+### 4. Migration to Azure SQL Database
 ---
 #### Migration Installation Instructions
 ---
@@ -281,7 +284,7 @@ Target Server: migration_validation_queries.sql
 - Upload .bak file to the container by clicking on **Upload** in the desired container by dragging and dropping the file here before uploading.
 
 
-### 4. Data Backup and Restore
+### 5. Data Backup and Restore
 ---
 > [!NOTE]
 > The following section uses SSMS.
@@ -432,7 +435,7 @@ SECRET = 'Access Key';`
 
 
 
-### 5. Disaster Recovery Simulation
+### 6. Disaster Recovery Simulation
 ---
 This part of the project simulates data loss and corruption within the production environment to test the robustness of disaster recovery procedures. 
 
@@ -545,7 +548,7 @@ Delete the corrupted database in the Azure Portal by navigating to it and clicki
 
 
 
-### 6. Geo-Replication and Failover 
+### 7. Geo-Replication and Failover 
 ---
 Geo-replication involves backing up the primary database to a secondary location which differs from the primary database's region and incase of a disaster. 
 
@@ -599,7 +602,7 @@ A tailback reverts the workload back to the primary region after a successful fa
 
 
 
-### 7. Microsoft Entra Directory Integration
+### 8. Microsoft Entra Directory Integration
 ---
 To manage who can access the data as well as user management, Microsoft Entra IDs can be created for administrative authority. 
 
@@ -686,13 +689,6 @@ Right-click on any table and select **Select Top 1000** and this will return the
 However, if you attempt the following query: `DELETE TOP (1) FROM Person.BusinessEntity;` 
 You will see the following error due to read-only access: 
 ![image](https://github.com/S-a-a-h/azure-database-migration978/assets/152003248/c0115aaf-8cd1-4446-9434-d40185525a5d)
-
-
-
-
-### 8. Azure Database Migration: Project Diagram
----
-![image](https://github.com/S-a-a-h/azure-database-migration978/assets/152003248/58528764-be23-4971-8a12-875ecc9110f2)
 
 
 
